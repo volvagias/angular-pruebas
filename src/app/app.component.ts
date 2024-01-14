@@ -1,4 +1,4 @@
-import { Component, Inject } from '@angular/core';
+import { Component, Inject, ViewChild, ElementRef, Renderer2 } from '@angular/core';
 
 @Component({
   selector: 'app-root',
@@ -14,9 +14,9 @@ export class AppComponent {
 
   public imgUrl: string = '';
 
-  
+  @ViewChild('myButton')myButtonInTS!:ElementRef;
 
-  constructor(){
+  constructor(private renderer2: Renderer2){ 
     
     console.log('Componente cargado');
     this.estaEnCelu();
@@ -25,6 +25,11 @@ export class AppComponent {
   
   ngOnInit(){
 
+  }
+
+  boton(){
+    const myButton=this.myButtonInTS.nativeElement;
+    this.renderer2.setStyle(myButton, 'backgroundColor', 'yellow');
   }
 
   estaEnCelu(){
