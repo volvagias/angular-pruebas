@@ -1,0 +1,24 @@
+.contenedor
+{
+  width: 97%;
+  
+  margin: 20px auto; /* auto me centra la página */
+
+  overflow-x: auto;  /* scrollear */
+  overflow-y: auto;
+}
+
+.contenedor .contenido
+{
+  background: rgb(255, 255, 255);
+  padding: 20px;
+  border-radius: 8px; /* redondeo los bordes de los th */
+}
+
+.contenido tr input {
+    display: flex;
+}
+
+.boton-enviar {
+    margin-top: 10px;
+}

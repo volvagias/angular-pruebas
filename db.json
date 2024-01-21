@@ -1,0 +1,28 @@
+{
+  "users": [
+    {
+      "id": "1",
+      "name": "Pepe",
+      "age": "55",
+      "email": "pepe@gmail.com"
+    },
+    {
+      "id": "2",
+      "name": "Juan",
+      "age": "33",
+      "email": "juan@hotmail.net"
+    },
+    {
+      "id": "bcee",
+      "Nombre": "Leonel",
+      "Edad": "30",
+      "Correo": "leonel.bruzzese@gmail.com"
+    },
+    {
+      "id": "69d0",
+      "Nombre": "Leonel",
+      "Edad": "18",
+      "Correo": "leonel.bruzzese@gmail.com"
+    }
+  ]
+}

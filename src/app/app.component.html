@@ -9,8 +9,8 @@
  
 <router-outlet></router-outlet>
 
-<div>
-    <button #myButton>BOTON</button>
+<!-- <div>
+    <button (click)="toggleClass()" [ngClass]="{'ng1':isActive, 'ng2':isActive}">BOTON</button>
     <p>Nombre del Empleado:{{nombre}}</p>
     <p>Edad:{{edad}}</p>  
     <p *ngIf="edad>=18; else menor">Es mayor de edad.</p>
@@ -19,12 +19,53 @@
         <tr>
         <td>Sueldos</td>
         </tr>
-        <tr *ngFor="let sueldo of sueldos">
-        <td>{{sueldo}}</td>
+        <tr *ngFor="let usuario of usuarios">
+        <td>{{usuario.nombre}}</td>
+        <td>{{usuario.edad}}</td>
+        <td>{{usuario.obraSocial}}</td>
+        <td>{{usuario.mail}}</td>
         </tr>
     </table>
+
+    <input for type="text" [(ngModel)]="juego">
+    <p>el mejor juego de la historia es: {{juego}}</p>
+
 </div>
 
     <h4>HOla</h4>
-    <img [src]="imgUrl" alt="">     
+    <img [src]="imgUrl" alt="">      -->
 
+<div class="contenedor">
+    <main class="contenido"> 
+    
+        <div *ngFor="let data of dataEntrante"> <!-- Usando el GET -->
+            <p>Nombre: {{data.name}}</p>
+            <p>Edad: {{data.age}}</p>
+            <p>Email: {{data.email}}</p>
+            <br>
+        </div>
+
+        <form [formGroup]="form" (submit)="enviarData()">
+            <tr>
+                <label for="name">Nombre:</label>
+                <input formControlName="name" type="text" id="name" name="name">
+            </tr>
+            <tr>
+                <label for="age">Edad:</label>
+                <input formControlName="age" type="text" id="age" name="age">
+            </tr>
+            <tr>
+                <label for="email">Email</label>
+                <input formControlName="email" type="text" id="email" name="email">
+            </tr>
+            <div>
+                <button type="submit">Enviar datos</button>
+            </div>
+        </form>
+
+    </main>
+</div>    
+
+<!-- <div>
+    Valido: {{ formLogin.valid | json }}
+</div> -->

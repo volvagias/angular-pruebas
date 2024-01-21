@@ -1,43 +1,61 @@
-import { Component, Inject, ViewChild, ElementRef, Renderer2 } from '@angular/core';
+import { NgClass } from '@angular/common';
+import { Component, Inject, ViewChild, ElementRef, OnInit } from '@angular/core'; // rendered2
+import { FormBuilder, FormGroup, Validators } from '@angular/forms';
+import { RestService } from './rest.service';
 
 @Component({
   selector: 'app-root',
   templateUrl: './app.component.html',
   styleUrls: ['./app.component.css']
 })
-export class AppComponent {
+export class AppComponent{
   title = 'testeos-de-laburo';
 
-  public nombre = 'Rodriguez Pablo';
-  public edad = 17;
-  public sueldos = [1700, 1600, 1900];
+  public formLogin!: FormGroup;
 
-  public imgUrl: string = '';
+  public dataEntrante:any = [];
 
-  @ViewChild('myButton')myButtonInTS!:ElementRef;
+  public form!: FormGroup;
 
-  constructor(private renderer2: Renderer2){ 
-    
-    console.log('Componente cargado');
-    this.estaEnCelu();
-    window.addEventListener('resize', () => this.estaEnCelu());
-  }
   
-  ngOnInit(){
 
+  constructor(
+    public formBuilder: FormBuilder, 
+    private RestService: RestService)
+  { }
+  
+  ngOnInit() {
+ 
+    this.cargarData();
+
+    this.form = this.formBuilder.group({
+      name: [''],
+      age: [''],
+      email: ['']
+    })
   }
 
-  boton(){
-    const myButton=this.myButtonInTS.nativeElement;
-    this.renderer2.setStyle(myButton, 'backgroundColor', 'yellow');
+  cargarData() {  /* GET */
+    this.RestService.get('http://localhost:3000/users')
+    .subscribe(respuesta => {
+      this.dataEntrante = respuesta;
+    })
   }
 
-  estaEnCelu(){
-    if(window.innerWidth < 768){
-      this.imgUrl = 'assets/images/informatica.png';
-    }
-    else{
-      this.imgUrl = '/assets/images/logo-hospital.png';
-    }
+  enviarData() { /* POST */
+    this.RestService.post('http://localhost:3000/users', 
+    {Nombre: this.form.value.name,
+    Edad: this.form.value.age,
+    Correo: this.form.value.email})
+    .subscribe(respuesta => {
+    })
   }
+
+
+
+
+
+
+
+
 }
