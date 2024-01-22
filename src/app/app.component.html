@@ -45,7 +45,7 @@
             <br>
         </div>
 
-        <form [formGroup]="form" (submit)="enviarData()">
+        <form [formGroup]="form" (submit)="enviarData()"> <!-- Usando el POST -->
             <tr>
                 <label for="name">Nombre:</label>
                 <input formControlName="name" type="text" id="name" name="name">

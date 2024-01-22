@@ -13,16 +13,10 @@
       "email": "juan@hotmail.net"
     },
     {
-      "id": "bcee",
-      "Nombre": "Leonel",
-      "Edad": "30",
-      "Correo": "leonel.bruzzese@gmail.com"
-    },
-    {
-      "id": "69d0",
-      "Nombre": "Leonel",
-      "Edad": "18",
-      "Correo": "leonel.bruzzese@gmail.com"
+      "id": "d664",
+      "name": "Leonel",
+      "age": "18",
+      "email": "leonel.bruzzese@gmail.com"
     }
   ]
 }

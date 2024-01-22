@@ -25,7 +25,7 @@ export class AppComponent{
   { }
   
   ngOnInit() {
- 
+
     this.cargarData();
 
     this.form = this.formBuilder.group({
@@ -33,6 +33,7 @@ export class AppComponent{
       age: [''],
       email: ['']
     })
+
   }
 
   cargarData() {  /* GET */
@@ -44,10 +45,15 @@ export class AppComponent{
 
   enviarData() { /* POST */
     this.RestService.post('http://localhost:3000/users', 
-    {Nombre: this.form.value.name,
-    Edad: this.form.value.age,
-    Correo: this.form.value.email})
+    {name: this.form.value.name,
+    age: this.form.value.age,
+    email: this.form.value.email})
     .subscribe(respuesta => {
+
+      this.cargarData(); // Actualiza la lista después de agregar un nuevo objeto
+
+      // Reinicia el formulario después de enviar datos
+      this.form.reset();
     })
   }
 
