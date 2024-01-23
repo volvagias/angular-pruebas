@@ -3,6 +3,13 @@ import { Component, Inject, ViewChild, ElementRef, OnInit } from '@angular/core'
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { RestService } from './rest.service';
 
+interface User {
+  id: string;
+  name: string;
+  age: string;
+  email: string;
+}
+
 @Component({
   selector: 'app-root',
   templateUrl: './app.component.html',
@@ -13,7 +20,7 @@ export class AppComponent{
 
   public formLogin!: FormGroup;
 
-  public dataEntrante:any = [];
+  public dataEntrante:User[] = [];
 
   public form!: FormGroup;
 
@@ -35,6 +42,7 @@ export class AppComponent{
     })
 
   }
+  
 
   cargarData() {  /* GET */
     this.RestService.get('http://localhost:3000/users')
@@ -44,8 +52,17 @@ export class AppComponent{
   }
 
   enviarData() { /* POST */
+
+    // Obtener la última ID en la lista actual
+    const ultimaId = this.dataEntrante.length > 0 ? Math.max(...this.dataEntrante.map(user => parseInt(user.id))) : 0;
+
+    // Generar una nueva ID basada en la última ID
+    const nuevaId = (ultimaId + 1).toString();
+
     this.RestService.post('http://localhost:3000/users', 
-    {name: this.form.value.name,
+    {
+    id: nuevaId,  
+    name: this.form.value.name,
     age: this.form.value.age,
     email: this.form.value.email})
     .subscribe(respuesta => {
